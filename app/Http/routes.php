@@ -29,3 +29,14 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+Route::get('/battlenet/{bracket}', function ($bracket) {
+    $battlenet = new \App\Services\API\BattleNet([
+        'key' => 'jcyb2h84jnw36egx8xbmx4tssx4qw54e'
+    ]);
+    $leaderboard = $battlenet->getLeaderboard($bracket);
+    return view('battlenet', [
+        'leaderboard' => $leaderboard,
+        'bracket' => $bracket
+    ]);
+});
