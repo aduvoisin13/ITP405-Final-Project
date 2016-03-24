@@ -1,6 +1,7 @@
 # ITP-405 Final Project
 
 Name: Andre Duvoisin
+
 USC Email: duvoisin@usc.edu
 
 This is the final project for ITP-405. All of the design specifications below are a work-in-progress; I'm still trying to figure out exactly what I want the website to do, and how users will find the site useful.
@@ -45,6 +46,9 @@ Blizzard Entertainment's [Battle.net API](https://dev.battle.net/)
 ## What do you think your tables will be?
 
 I don't have exact specifications yet, but I know that I will need to use tables in order to save character profiles, team profiles, and comparisons for later viewing based on user account.
+
+
+
 
 
 # Laravel PHP Framework
