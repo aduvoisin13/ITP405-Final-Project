@@ -1,3 +1,52 @@
+# ITP-405 Final Project
+
+Name: Andre Duvoisin
+USC Email: duvoisin@usc.edu
+
+This is the final project for ITP-405. All of the design specifications below are a work-in-progress; I'm still trying to figure out exactly what I want the website to do, and how users will find the site useful.
+
+## What is your site about?
+
+The website interacts with the [Battle.net API](https://dev.battle.net/) in order to provide players information for Player versus Player (PvP) combat in [World of Warcraft (WoW)](http://us.battle.net/wow/en/). Here is a list of expected features:
+
+* Leaderboards for 2v2, 3v3, 5v5, and RBG (Rated Battlegrounds)
+* Character profiles for the above
+* Saving character profiles to re-visit later
+* Comparison of different characters in order to view differences/similarities in specilization, talents, race, and gear
+* Saving these comparisons to re-visit later
+
+Time permitting, I would like to expand this to Player versus Environment (PvE). Here's a sample of what could be done:
+
+* Challenge mode leaderboards
+* Character profiles for the above
+* Saving character profiles to re-visit later
+* Comparison of different characters in order to view differences/similarities in specilization, talents, race, and gear
+* Team profiles for the above
+* Saving team profiles to re-visit later
+* Comparison of different teams in order to view differences/similarities in team builds
+* Saving these comparisons to re-visit later
+
+This could even be expanded to being able to simply view and save different information, such as quests, achievements, and mounts, possibly with a link to the [Wowhead](http://www.wowhead.com/) page for each of these.
+
+The unique aspect of this website is the ability to both compare different character profiles and being able to save this information to come back to. As far as I know, there aren't any other websites that do this, and I know that I would have found something like this useful in the past.
+
+## What types of users will visit your site?
+
+Anyone who is a fan of WoW and would like to compare/contrast high level players in PvP (or PvE) with each other or with their own WoW character in order to see either similarities/differences between these players or where they themselves could improve, from an objective gear/specilization/etc perspective.
+
+## Will they need to create an account?
+
+I'm not sure yet. I believe I will need to use the Battle.net API's OAuth 2.0 to allow users to login with their Battle.net account for some features; if this is the case, then I will use that as the "account creation" and save data based on Battle.net account. If it is found that I do not need to use this feature, then I will have users create an account to use the website instead.
+
+## What API will you be using?
+
+Blizzard Entertainment's [Battle.net API](https://dev.battle.net/)
+
+## What do you think your tables will be?
+
+I don't have exact specifications yet, but I know that I will need to use tables in order to save character profiles, team profiles, and comparisons for later viewing based on user account.
+
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
