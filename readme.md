@@ -1,5 +1,7 @@
 # ITP-405 Final Project
 
+[![Build Status](https://travis-ci.org/aduvoisin13/ITP405-Final-Project.svg?branch=master)](https://travis-ci.org/aduvoisin13/ITP405-Final-Project)
+
 Name: Andre Duvoisin
 
 USC Email: duvoisin@usc.edu
