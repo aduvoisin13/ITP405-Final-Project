@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::get('/battlenet/{bracket}', function ($bracket) {
     $battlenet = new \App\Services\API\BattleNet([
-        'key' => 'jcyb2h84jnw36egx8xbmx4tssx4qw54e'
+        'key' => env('BATTLENET_KEY')
     ]);
     $leaderboard = $battlenet->getLeaderboard($bracket);
     return view('battlenet', [
