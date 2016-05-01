@@ -31,12 +31,18 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/battlenet/{bracket}', function ($bracket) {
-    $battlenet = new \App\Services\API\BattleNet([
-        'key' => env('BATTLENET_KEY')
-    ]);
+    $battlenet = new \App\Services\API\BattleNet();
     $leaderboard = $battlenet->getLeaderboard($bracket);
     return view('battlenet', [
         'leaderboard' => $leaderboard,
         'bracket' => $bracket
+    ]);
+});
+
+Route::get('/wow/character/{realm}/{characterName}', function($realm, $characterName) {
+    $battlenet = new \App\Services\API\BattleNet();
+    $character = $battlenet->getCharacter($realm, $characterName);
+    return view('character', [
+        'character' => $character
     ]);
 });

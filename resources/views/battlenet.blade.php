@@ -27,7 +27,9 @@
                             {{$player->rating}}
                         </td>
                         <td class="text-center" style="vertical-align:middle;">
-                            {{$player->name}}
+                            <a href="/wow/character/<?=$player->realmSlug?>/<?=$player->name?>">
+                                {{$player->name}}
+                            </a>
                         </td>
                         <td class="text-center" style="vertical-align:middle;">
                             {{$player->seasonWins}}
