@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Validator;
+
 class User extends Authenticatable
 {
     /**
@@ -23,4 +25,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function validate($data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed'
+        ]);
+    }
 }
