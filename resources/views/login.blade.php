@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-    @if (session('failedAttempt'))
-        <p>Invalid credentials.</p>
-    @endif
-
     <div align="center">
+        <br>
+        @if (session('failedAttempt'))
+            <p>Invalid credentials.</p>
+        @endif
         <form method="post">
             {{csrf_field()}}
             Email: <input type="email" name="email">

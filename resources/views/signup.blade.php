@@ -10,6 +10,7 @@
     @endforeach
     
     <div align="center">
+        <br>
         <form method="post">
             {{csrf_field()}}
             Name: <input type="text" name="name" value="{{old('name')}}">

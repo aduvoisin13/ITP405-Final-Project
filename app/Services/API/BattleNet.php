@@ -3,6 +3,37 @@
 namespace App\Services\API;
 
 use Cache;
+use Exception;
+
+
+function file_get_contents_curl($url)
+{
+    try {
+        $ch = curl_init();
+        if ($ch === false)
+            throw new Exception('failed to initialize');
+        
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        
+        $data = curl_exec($ch);
+        if ($data === false)
+            throw new Exception(curl_error($ch), curl_errno($ch));
+            
+        curl_close($ch);
+    
+        return $data;
+    } catch(Exception $e) {
+        trigger_error(sprintf(
+            'Curl failed with error #%d: %s',
+            $e->getCode(), $e->getMessage()),
+            E_USER_ERROR);
+    }
+    
+    return false;
+}
+
 
 class BattleNet
 {
@@ -23,10 +54,10 @@ class BattleNet
             $key = $this->key;
             $locale = $this->locale;
             $url = "https://us.api.battle.net/wow/leaderboard/$bracket?locale=$locale&apikey=$key";
-            $jsonString = file_get_contents($url);
+            $jsonString = file_get_contents_curl($url);
             Cache::put($bracket, $jsonString, 30);
         }
-
+        
         $leaderboard = json_decode($jsonString);
         return $leaderboard;
     }
@@ -42,7 +73,7 @@ class BattleNet
             $locale = $this->locale;
             $fields = "items";
             $url = "https://us.api.battle.net/wow/character/$realm/$characterName?fields=$fields&locale=$locale&apikey=$key";
-            $jsonString = file_get_contents($url);
+            $jsonString = file_get_contents_curl($url);
             Cache::put($cacheKey, $jsonString, 30);
         }
         
