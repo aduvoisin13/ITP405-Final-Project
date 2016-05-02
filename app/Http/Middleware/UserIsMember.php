@@ -22,6 +22,6 @@ class UserIsMember
             return $next($request);
         }
         
-        return redirect('/');
+        return redirect('login');
     }
 }
