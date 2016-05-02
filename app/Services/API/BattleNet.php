@@ -9,7 +9,9 @@ use Exception;
 function file_get_contents_curl($url)
 {
     try {
+        
         $ch = curl_init();
+        
         if ($ch === false)
             throw new Exception('failed to initialize');
         
@@ -18,17 +20,21 @@ function file_get_contents_curl($url)
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         
         $data = curl_exec($ch);
+        
         if ($data === false)
             throw new Exception(curl_error($ch), curl_errno($ch));
             
         curl_close($ch);
     
         return $data;
+        
     } catch(Exception $e) {
+        
         trigger_error(sprintf(
             'Curl failed with error #%d: %s',
             $e->getCode(), $e->getMessage()),
             E_USER_ERROR);
+            
     }
     
     return false;
