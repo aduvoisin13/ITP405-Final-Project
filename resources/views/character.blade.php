@@ -20,6 +20,12 @@
                     <th class="text-center">Item</th>
                 </tr>
                 @include('item-display')
+                <form action="/saved" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="name" value="{{$character->name}}">
+                    <input type="hidden" name="realm" value="{{$character->realm}}">
+                    <button type="submit" class="btn btn-default">Save Character</button>
+                </form>
             </table>
         @endif
     </div>

@@ -13,8 +13,6 @@
         <br>
         <form method="post">
             {{csrf_field()}}
-            Name: <input type="text" name="name" value="{{old('name')}}">
-            <br>
             Email: <input type="email" name="email" value="{{old('email')}}">
             <br>
             Password: <input type="password" name="password">

@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password', 'type',
     ];
 
     /**
@@ -29,9 +29,13 @@ class User extends Authenticatable
     public static function validate($data)
     {
         return Validator::make($data, [
-            'name' => 'required|min:5',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed'
         ]);
+    }
+    
+    public function characters()
+    {
+        return $this->hasMany('App\Models\Character');
     }
 }

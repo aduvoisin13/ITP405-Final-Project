@@ -26,11 +26,20 @@ Route::get('/', function () {
 |
 */
 
-use App\User;
-use Illuminate\Http\Request;
-
 Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['member']], function() {
+        Route::get('/home', function() {
+            return view('home');
+        });
+        
+        Route::get('/saved', 'CharacterController@show');
+        
+        Route::post('/saved', 'CharacterController@store');
+        
+        Route::get('/compare', function() {
+            return view('compare');
+        });
+        
         Route::get('/battlenet/{bracket}', function ($bracket) {
             $battlenet = new \App\Services\API\BattleNet();
             $leaderboard = $battlenet->getLeaderboard($bracket);
@@ -52,44 +61,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('signup', function() {
         return view('signup');
     });
-
-    Route::post('signup', function(Request $request) {
-        $validation = User::validate($request->all());
-
-        if ($validation->passes())
-        {
-            $user = new User();
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->password = Hash::make($request->input('password'));
-            $user->save();
-            
-            return redirect('/wow/character/tichondrius/Veilgrin');
-        }
-
-        return redirect('signup')
-            ->withInput()
-            ->withErrors($validation->errors());
-    });
+    
+    Route::post('signup', 'AccountController@signup');
     
     Route::get('login', function() {
         return view('login');
     });
 
-    Route::post('login', function(Request $request) {
-        $attemptIsSuccessful = Auth::attempt([
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-        ]);
-
-        if ($attemptIsSuccessful)
-        {
-            return redirect('/wow/character/tichondrius/Veilgrin');
-        }
-
-        return redirect('login')
-            ->with('failedAttempt', true);
-    });
+    Route::post('login', 'AccountController@login');
 
     Route::get('logout', function() {
         Auth::logout();
