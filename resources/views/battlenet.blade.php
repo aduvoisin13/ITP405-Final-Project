@@ -27,8 +27,8 @@
                             {{$player->rating}}
                         </td>
                         <td class="text-center" style="vertical-align:middle;">
-                            <a href="/wow/character/<?=$player->realmSlug?>/<?=$player->name?>">
-                                {{$player->name}}
+                            <a href="/wow/character/<?=$player->realmName?>/<?=$player->name?>">
+                                {{$player->name}}-{{$player->realmName}}
                             </a>
                         </td>
                         <td class="text-center" style="vertical-align:middle;">

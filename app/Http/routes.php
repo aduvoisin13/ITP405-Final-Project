@@ -32,13 +32,11 @@ Route::group(['middleware' => ['web']], function () {
             return view('home');
         });
         
-        Route::get('/saved', 'CharacterController@show');
-        
+        Route::get('/saved', 'CharacterController@saved');
         Route::post('/saved', 'CharacterController@store');
         
-        Route::get('/compare', function() {
-            return view('compare');
-        });
+        Route::get('/compare', 'CharacterController@compare');
+        Route::post('/compare', 'CharacterController@runComparison');
         
         Route::get('/battlenet/{bracket}', function ($bracket) {
             $battlenet = new \App\Services\API\BattleNet();

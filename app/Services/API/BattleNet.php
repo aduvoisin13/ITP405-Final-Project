@@ -53,6 +53,8 @@ class BattleNet
 
     public function getLeaderboard($bracket)
     {
+        $bracket = rawurlencode($bracket);
+        
         $jsonString = Cache::get($bracket);
 
         if (!$jsonString)
@@ -70,7 +72,10 @@ class BattleNet
     
     public function getCharacter($realm, $characterName)
     {
-        $cacheKey = $realm . $characterName;
+        $realm = rawurlencode($realm);
+        $characterName = rawurlencode($characterName);
+        
+        $cacheKey = "$characterName-$realm";
         $jsonString = Cache::get($cacheKey);
         
         if (!$jsonString)
