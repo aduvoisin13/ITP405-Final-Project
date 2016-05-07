@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\User;
 use Auth;
+use Hash;
 
 class AccountController extends Controller
 {    
