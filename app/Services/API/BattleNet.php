@@ -91,4 +91,86 @@ class BattleNet
         $character = json_decode($jsonString);
         return $character;
     }
+    
+    public function getClasses()
+    {
+        $cacheKey = "classes";
+        $jsonString = Cache::get($cacheKey);
+        
+        if (!$jsonString)
+        {
+            $key = $this->key;
+            $locale = $this->locale;
+            $url = "https://us.api.battle.net/wow/data/character/classes?locale=$locale&apikey=$key";
+            $jsonString = file_get_contents_curl($url);
+            Cache::put($cacheKey, $jsonString, 30);
+        }
+        
+        $classes = json_decode($jsonString);
+        return $classes;
+    }
+    
+    public function getSpecIds()
+    {
+        // http://wowprogramming.com/docs/api_types#specID
+        $specIds = array(
+            // Mage
+            62 => "Arcane",
+            63 => "Fire",
+            64 => "Frost",
+            
+            // Paladin
+            65 => "Holy",
+            66 => "Protection",
+            70 => "Retribution",
+            
+            // Warrior
+            71 => "Arms",
+            72 => "Fury",
+            73 => "Protection",
+            
+            // Druid
+            102 => "Balance",
+            103 => "Feral",
+            104 => "Guardian",
+            105 => "Restoration",
+            
+            // Death Knight
+            250 => "Blood",
+            251 => "Frost",
+            252 => "Unholy",
+            
+            // Hunter
+            253 => "Beast Mastery",
+            254 => "Marksmanship",
+            255 => "Survival",
+            
+            // Priest
+            256 => "Discipline",
+            257 => "Holy",
+            258 => "Shadow",
+            
+            // Rogue
+            259 => "Assassination",
+            260 => "Combat",
+            261 => "Subtlety",
+            
+            // Shaman
+            262 => "Elemental",
+            263 => "Enhancement",
+            264 => "Restoration",
+            
+            // Warlock
+            265 => "Affliction",
+            266 => "Demonology",
+            267 => "Destruction",
+            
+            // Monk
+            268 => "Brewmaster",
+            269 => "Windwalker",
+            270 => "Mistweaver"
+        );
+        
+        return $specIds;
+    }
 }

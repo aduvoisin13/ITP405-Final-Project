@@ -13,11 +13,17 @@ use App\Services\API\BattleNet;
 
 class CharacterController extends Controller
 {
-    public function saved()
+    public function getSavedCharacters()
     {
         $user = Auth::user();
         $user_id = $user->id;
         $characters = $user->characters;
+        return $characters;
+    }
+    
+    public function saved()
+    {
+        $characters = CharacterController::getSavedCharacters();
         return view('saved', [
             'characters' => $characters
         ]);
@@ -32,7 +38,7 @@ class CharacterController extends Controller
         
         if ($validation->fails())
         {
-            return redirect('saved');
+            return redirect($_SERVER['HTTP_REFERER']);
         }
         
         $character = new Character();
@@ -41,7 +47,7 @@ class CharacterController extends Controller
         $character->user_id = Auth::user()->id;
         $character->save();
         
-        return redirect('saved');
+        return redirect($_SERVER['HTTP_REFERER']);
     }
     
     public function compare()

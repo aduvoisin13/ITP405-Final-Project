@@ -40,10 +40,19 @@ Route::group(['middleware' => ['web']], function () {
         
         Route::get('/battlenet/{bracket}', function ($bracket) {
             $battlenet = new \App\Services\API\BattleNet();
+            $characterController = new \App\Http\Controllers\CharacterController();
+            
             $leaderboard = $battlenet->getLeaderboard($bracket);
+            $classes = $battlenet->getClasses();
+            $specIds = $battlenet->getSpecIds();
+            $saved = $characterController->getSavedCharacters();
+            
             return view('battlenet', [
+                'bracket' => $bracket,
                 'leaderboard' => $leaderboard,
-                'bracket' => $bracket
+                'classes' => $classes,
+                'specIds' => $specIds,
+                'saved' => $saved
             ]);
         });
 
