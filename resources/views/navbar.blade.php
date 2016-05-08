@@ -37,7 +37,7 @@
                     {{csrf_field()}}
                     <button type="submit" class="btn btn-default">Log Out</button>
                 </form>
-            </div><!-- /.navbar-collapse -->
+            </div> <!-- /.navbar-collapse -->
         </div> <!-- /.container-fluid -->
     </nav>
 @endif
