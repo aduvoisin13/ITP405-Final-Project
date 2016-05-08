@@ -66,12 +66,22 @@ Route::group(['middleware' => ['web']], function () {
     });
     
     Route::get('signup', function() {
+        if (Auth::check())
+        {
+            return view('home');
+        }
+        
         return view('signup');
     });
     
     Route::post('signup', 'AccountController@signup');
     
     Route::get('login', function() {
+        if (Auth::check())
+        {
+            return view('home');
+        }
+        
         return view('login');
     });
 

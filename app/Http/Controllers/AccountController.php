@@ -11,17 +11,27 @@ use Auth;
 use Hash;
 
 class AccountController extends Controller
-{    
-    public function login(Request $request)
+{
+    public function attemptAuth($email, $password)
     {
         $attemptIsSuccessful = Auth::attempt([
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
+            'email' => $email,
+            'password' => $password
         ]);
+        
+        return $attemptIsSuccessful;
+    }
+    
+    public function login(Request $request)
+    {
+        $attemptIsSuccessful = AccountController::attemptAuth(
+            $request->input('email'),
+            $request->input('password')
+        );
 
         if ($attemptIsSuccessful)
         {
-            return redirect('/home');
+            return redirect('home');
         }
 
         return redirect('login')
@@ -40,7 +50,12 @@ class AccountController extends Controller
             $user->type = 'member';
             $user->save();
             
-            return redirect('/home');
+            AccountController::attemptAuth(
+                $request->input('email'),
+                $request->input('password')
+            );
+            
+            return redirect('home');
         }
 
         return redirect('signup')
