@@ -44,13 +44,13 @@ class CharacterController extends Controller
             return redirect($_SERVER['HTTP_REFERER']);
         }
         
-        $character = new Character();
-        $character->name = $request->input('name');
-        $character->realm = $request->input('realm');
-        $character->class = $request->input('class');
-        $character->specialization = $request->input('specialization');
-        $character->user_id = Auth::user()->id;
-        $character->save();
+        $character = Character::firstOrCreate([
+            'name' => $request->input('name'),
+            'realm' => $request->input('realm'),
+            'class' => $request->input('class'),
+            'specialization' => $request->input('specialization'),
+            'user_id' => Auth::user()->id
+        ]);
         
         return redirect($_SERVER['HTTP_REFERER']);
     }
@@ -195,10 +195,10 @@ class CharacterController extends Controller
             return redirect($_SERVER['HTTP_REFERER']);
         }
         
-        $comparison = new Comparison();
-        $comparison->character_ids = json_encode($request->input('character_ids'));
-        $comparison->user_id = Auth::user()->id;
-        $comparison->save();
+        $comparison = Comparison::firstOrCreate([
+            'character_ids' => json_encode($request->input('character_ids')),
+            'user_id' => Auth::user()->id
+        ]);
         
         return redirect($_SERVER['HTTP_REFERER']);
     }

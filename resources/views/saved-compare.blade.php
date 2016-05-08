@@ -6,7 +6,7 @@
 
 @section('content')
     <div align="center">
-        @if (empty($comparisons))
+        @if ($comparisons->isEmpty())
             <h3 style="font-weight:bold">No Saved Comparisons</h3>
         @else
             <h3 style="text-decoration:underline">Saved Comparisons</h3>
@@ -14,7 +14,7 @@
                 <h4 style="text-decoration:underline">Comparison #{{$comparison->id}}</h4>
                 @foreach ($comparison->characters as $character)
                     <a href="/wow/character/<?=$character->realm?>/<?=$character->name?>">{{$character->name}}-{{$character->realm}}</a>
-                    </br>
+                    <br>
                 @endforeach
                 <form action="/compare" method="post">
                     {{csrf_field()}}
@@ -23,6 +23,7 @@
                         @endforeach
                     <button type="submit" class="btn btn-default">View Comparison</button>
                 </form>
+                <br>
             @endforeach
         @endif
     </div>

@@ -6,7 +6,7 @@
 
 @section('content')
     <div align="center">
-        @if (empty($characters))
+        @if ($characters->isEmpty())
             <h3 style="font-weight:bold">No Saved Characters</h3>
         @else
             <h3 style="text-decoration:underline">Saved Characters</h3>
