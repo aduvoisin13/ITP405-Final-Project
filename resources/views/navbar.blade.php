@@ -24,8 +24,14 @@
                             <li><a href="/battlenet/rbg">RBG</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compare<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/compare">New Comparison</a></li>
+                            <li><a href="/saved-compare">Saved Comparisons</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/saved">Saved Characters</a></li>
-                    <li><a href="/compare">Compare</a></li>
                 </ul>
                 <form class="navbar-form navbar-right" action="/logout" method="get">
                     {{csrf_field()}}

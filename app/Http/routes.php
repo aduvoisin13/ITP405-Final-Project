@@ -103,6 +103,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/compare', 'CharacterController@compare');
         Route::post('/compare', 'CharacterController@runComparison');
         
+        Route::get('/saved-compare', 'CharacterController@viewSavedComparisons');
+        Route::post('/saved-compare', 'CharacterController@saveComparison');
+        
         Route::get('/battlenet/{bracket}', function ($bracket) {
             $battlenet = new \App\Services\API\BattleNet();
             $characterController = new \App\Http\Controllers\CharacterController();

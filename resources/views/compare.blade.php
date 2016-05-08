@@ -16,7 +16,7 @@
                     @foreach ($characters as $character)
                         <div class="input-group" style="width: 80%; margin-bottom: 10px;">
                             <span class="input-group-addon">
-                                <input type="checkbox" name="checkbox[]" id="{{$character->id}}" value="{{$character->id}}">
+                                <input type="checkbox" name="character_ids[]" id="{{$character->id}}" value="{{$character->id}}">
                             </span>
                             <a class="form-control" href="/wow/character/<?=$character->realm?>/<?=$character->name?>">{{$character->name}}-{{$character->realm}}</a>
                         </div>

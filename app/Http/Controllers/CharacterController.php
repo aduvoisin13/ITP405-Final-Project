@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Auth;
 use Validator;
 use App\Models\Character;
+use App\Models\Comparison;
 use App\Services\API\BattleNet;
 
 class CharacterController extends Controller
@@ -67,7 +68,7 @@ class CharacterController extends Controller
     public function runComparison(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'checkbox' => 'required|array|min:2'
+            'character_ids' => 'required|array|min:2'
         ]);
         
         if ($validation->fails())
@@ -75,7 +76,7 @@ class CharacterController extends Controller
             return redirect('compare');
         }
         
-        $characters = Character::find($request->input('checkbox'));
+        $characters = Character::find($request->input('character_ids'));
         $battlenet = new BattleNet();
         $profiles = [];
         
@@ -155,7 +156,50 @@ class CharacterController extends Controller
         
         return view('result', [
             'comparison' => $comparison,
-            'names' => $names
+            'names' => $names,
+            'characters' => $characters
         ]);
+    }
+    
+    public function getSavedComparisons()
+    {
+        $user = Auth::user();
+        $user_id = $user->id;
+        $comparisons = $user->comparisons;
+        return $comparisons;
+    }
+    
+    public function viewSavedComparisons()
+    {
+        $comparisons = CharacterController::getSavedComparisons();
+        
+        foreach ($comparisons as $comparison)
+        {
+            $character_ids = json_decode($comparison->character_ids);
+            $characters = Character::find($character_ids);
+            $comparison->characters = $characters;
+        }
+        return view('saved-compare', [
+            'comparisons' => $comparisons
+        ]);
+    }
+    
+    public function saveComparison(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'character_ids' => 'required|array|min:2'
+        ]);
+        
+        if ($validation->fails())
+        {
+            return redirect($_SERVER['HTTP_REFERER']);
+        }
+        
+        $comparison = new Comparison();
+        $comparison->character_ids = json_encode($request->input('character_ids'));
+        $comparison->user_id = Auth::user()->id;
+        $comparison->save();
+        
+        return redirect($_SERVER['HTTP_REFERER']);
     }
 }
