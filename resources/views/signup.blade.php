@@ -21,5 +21,7 @@
             <br>
             <input type="submit" value="Sign Up">
         </form>
+        <br>
+        Already a member? <a href="/login">Login!</a>
     </div>
 @endsection

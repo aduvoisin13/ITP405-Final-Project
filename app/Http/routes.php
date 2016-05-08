@@ -27,6 +27,71 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+    Route::get('signup', function() {
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->type == 'member')
+            {
+                return redirect('home');
+            }
+            if ($user->type == 'admin')
+            {
+                Auth::logout();
+            }
+        }
+        
+        Auth::logout();
+        return view('signup');
+    });
+    
+    Route::post('signup', 'AccountController@signup');
+    
+    Route::get('login', function() {
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->type == 'member')
+            {
+                return redirect('home');
+            }
+            if ($user->type == 'admin')
+            {
+                Auth::logout();
+            }
+        }
+        
+        return view('login');
+    });
+
+    Route::post('login', 'AccountController@login');
+
+    Route::get('logout', function() {
+        Auth::logout();
+        return redirect('login');
+    });
+    
+    Route::get('admin', function() {
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->type == 'member')
+            {
+                Auth::logout();
+            }
+            if ($user->type == 'admin')
+            {
+                // return redirect('admin');
+            }
+        }
+        
+        return view('admin');
+    });
+    
+    Route::post('admin', 'AccountController@admin');
+});
+
+Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['member']], function() {
         Route::get('/home', function() {
             return view('home');
@@ -58,37 +123,23 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/wow/character/{realm}/{characterName}', function($realm, $characterName) {
             $battlenet = new \App\Services\API\BattleNet();
+            $characterController = new \App\Http\Controllers\CharacterController();
+            
             $character = $battlenet->getCharacter($realm, $characterName);
+            $classes = $battlenet->getClasses();
+            $saved = $characterController->getSavedCharacters();
+            
             return view('character', [
-                'character' => $character
+                'character' => $character,
+                'classes' => $classes,
+                'saved' => $saved
             ]);
         });
     });
-    
-    Route::get('signup', function() {
-        if (Auth::check())
-        {
-            return redirect('home');
-        }
-        
-        return view('signup');
-    });
-    
-    Route::post('signup', 'AccountController@signup');
-    
-    Route::get('login', function() {
-        if (Auth::check())
-        {
-            return redirect('home');
-        }
-        
-        return view('login');
-    });
+});
 
-    Route::post('login', 'AccountController@login');
-
-    Route::get('logout', function() {
-        Auth::logout();
-        return redirect('login');
+Route::group(['middleware' => ['web']], function () {
+    Route::group(['middleware' => ['admin']], function() {
+        
     });
 });

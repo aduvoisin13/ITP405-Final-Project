@@ -4,9 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use Auth;
-
-class UserIsMember
+class UserIsAdmin
 {
     /**
      * Handle an incoming request.
@@ -20,7 +18,7 @@ class UserIsMember
         if (Auth::check())
         {
             $user = Auth::user();
-            if ($user->type == 'member')
+            if ($user->type == 'admin')
             {
                 return $next($request);
             }

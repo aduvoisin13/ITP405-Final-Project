@@ -3,6 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use App\User;
+
 class CreateUsersTable extends Migration
 {
     /**
@@ -20,6 +22,12 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        
+        $user = new User();
+        $user->email = 'admin';
+        $user->password = Hash::make('laravel');
+        $user->type = 'admin';
+        $user->save();
     }
 
     /**

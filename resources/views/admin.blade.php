@@ -12,7 +12,7 @@
         @endif
         <form method="post">
             {{csrf_field()}}
-            Admin Email: <input type="email" name="email">
+            Admin Username: <input type="text" name="username">
             <br>
             Admin Password: <input type="password" name="password">
             <br>

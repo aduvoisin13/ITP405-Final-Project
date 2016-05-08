@@ -33,7 +33,9 @@ class CharacterController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name' => 'required',
-            'realm' => 'required'
+            'realm' => 'required',
+            'class' => 'required',
+            'specialization' => 'required'
         ]);
         
         if ($validation->fails())
@@ -44,6 +46,8 @@ class CharacterController extends Controller
         $character = new Character();
         $character->name = $request->input('name');
         $character->realm = $request->input('realm');
+        $character->class = $request->input('class');
+        $character->specialization = $request->input('specialization');
         $character->user_id = Auth::user()->id;
         $character->save();
         

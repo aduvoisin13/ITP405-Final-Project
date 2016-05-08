@@ -36,10 +36,11 @@
                             </a>
                         </td>
                         <td class="text-center" style="vertical-align:middle;">
+                            <?php $className = "UNKNOWN"; ?>
                             @foreach ($classes->classes as $class)
                                 @if ($class->id == $player->classId)
                                     {{$class->name}}
-                                    <?php break; ?>
+                                    <?php $className = $class->name; break; ?>
                                 @endif
                             @endforeach
                         </td>
@@ -63,6 +64,8 @@
                                 {{csrf_field()}}
                                 <input type="hidden" name="name" value="{{$player->name}}">
                                 <input type="hidden" name="realm" value="{{$player->realmName}}">
+                                <input type="hidden" name="class" value="{{$className}}">
+                                <input type="hidden" name="specialization" value="{{$specIds[$player->specId]}}">
                                 @if (!$found)
                                     <button type="submit" class="btn btn-default">Save</button>
                                 @else

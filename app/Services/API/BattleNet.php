@@ -82,7 +82,7 @@ class BattleNet
         {
             $key = $this->key;
             $locale = $this->locale;
-            $fields = "items";
+            $fields = "items,talents";
             $url = "https://us.api.battle.net/wow/character/$realm/$characterName?fields=$fields&locale=$locale&apikey=$key";
             $jsonString = file_get_contents_curl($url);
             Cache::put($cacheKey, $jsonString, 30);

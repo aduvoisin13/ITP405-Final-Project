@@ -17,6 +17,8 @@ class CreateCharactersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->string('realm');
+            $table->string('class');
+            $table->string('specialization');
             $table->unique(array('user_id', 'name', 'realm'));
             $table->timestamps();
         });
