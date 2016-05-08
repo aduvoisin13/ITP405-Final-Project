@@ -68,7 +68,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('signup', function() {
         if (Auth::check())
         {
-            return view('home');
+            return redirect('home');
         }
         
         return view('signup');
@@ -79,7 +79,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('login', function() {
         if (Auth::check())
         {
-            return view('home');
+            return redirect('home');
         }
         
         return view('login');
