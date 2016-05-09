@@ -76,7 +76,7 @@ class AccountController extends Controller
 
         if ($attemptIsSuccessful)
         {
-            return redirect('welcome');
+            return redirect('admin/home');
         }
 
         return redirect('admin')

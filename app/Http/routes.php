@@ -81,7 +81,7 @@ Route::group(['middleware' => ['web']], function () {
             }
             if ($user->type == 'admin')
             {
-                // return redirect('admin');
+                return redirect('admin/home');
             }
         }
         
@@ -99,9 +99,11 @@ Route::group(['middleware' => ['web']], function () {
         
         Route::get('/saved', 'CharacterController@saved');
         Route::post('/saved', 'CharacterController@store');
+        Route::post('/remove', 'CharacterController@remove');
         
         Route::get('/compare', 'CharacterController@compare');
         Route::post('/compare', 'CharacterController@runComparison');
+        Route::post('/compare/delete', 'CharacterController@deleteComparison');
         
         Route::get('/saved-compare', 'CharacterController@viewSavedComparisons');
         Route::post('/saved-compare', 'CharacterController@saveComparison');
@@ -143,6 +145,23 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['admin']], function() {
+        Route::get('/admin/home', function() {
+            return view('admin/home');
+        });
         
+        Route::get('/admin/users', 'AdminController@users');
+        Route::post('/admin/users/add', 'AdminController@addUser');
+        Route::post('/admin/users/delete', 'AdminController@deleteUser');
+        Route::post('/admin/users/edit', 'AdminController@editUser');
+        
+        Route::get('/admin/characters', 'AdminController@characters');
+        Route::post('/admin/characters/add', 'AdminController@addCharacter');
+        Route::post('/admin/characters/delete', 'AdminController@deleteCharacter');
+        Route::post('/admin/characters/edit', 'AdminController@editCharacter');
+        
+        Route::get('/admin/comparisons', 'AdminController@comparisons');
+        Route::post('/admin/comparisons/add', 'AdminController@addComparison');
+        Route::post('/admin/comparisons/delete', 'AdminController@deleteComparison');
+        Route::post('/admin/comparisons/edit', 'AdminController@editComparison');
     });
 });

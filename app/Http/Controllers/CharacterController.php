@@ -18,7 +18,7 @@ class CharacterController extends Controller
     {
         $user = Auth::user();
         $user_id = $user->id;
-        $characters = $user->characters;
+        $characters = $user->characters->sortBy('id');
         return $characters;
     }
     
@@ -45,21 +45,36 @@ class CharacterController extends Controller
         }
         
         $character = Character::firstOrCreate([
+            'user_id' => Auth::user()->id,
             'name' => $request->input('name'),
-            'realm' => $request->input('realm'),
-            'class' => $request->input('class'),
-            'specialization' => $request->input('specialization'),
-            'user_id' => Auth::user()->id
+            'realm' => $request->input('realm')
         ]);
+        $character->class = $request->input('class');
+        $character->specialization = $request->input('specialization');
+        
+        return redirect('saved');
+    }
+    
+    public function remove(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'character_id' => 'required|integer'
+        ]);
+        
+        if ($validation->fails())
+        {
+            return redirect($_SERVER['HTTP_REFERER']);
+        }
+        
+        $character = Character::find($request->input('character_id'));
+        $character->delete();
         
         return redirect($_SERVER['HTTP_REFERER']);
     }
     
     public function compare()
     {
-        $user = Auth::user();
-        $user_id = $user->id;
-        $characters = $user->characters;
+        $characters = CharacterController::getSavedCharacters();
         return view('compare', [
             'characters' => $characters
         ]);
@@ -161,11 +176,28 @@ class CharacterController extends Controller
         ]);
     }
     
+    public function deleteComparison(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'comparison_id' => 'required|integer'
+        ]);
+        
+        if ($validation->fails())
+        {
+            return redirect($_SERVER['HTTP_REFERER']);
+        }
+        
+        $comparison = Comparison::find($request->input('comparison_id'));
+        $comparison->delete();
+        
+        return redirect($_SERVER['HTTP_REFERER']);
+    }
+    
     public function getSavedComparisons()
     {
         $user = Auth::user();
         $user_id = $user->id;
-        $comparisons = $user->comparisons;
+        $comparisons = $user->comparisons->sortBy('id');
         return $comparisons;
     }
     

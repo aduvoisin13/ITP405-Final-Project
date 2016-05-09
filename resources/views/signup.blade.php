@@ -11,15 +11,15 @@
     
     <div align="center">
         <br>
-        <form method="post">
+        <form method="post" class="form-inline">
             {{csrf_field()}}
-            Email: <input type="email" name="email" value="{{old('email')}}">
+            Email: <input type="email" class="form-control" name="email" value="{{old('email')}}">
             <br>
-            Password: <input type="password" name="password">
+            Password: <input type="password" class="form-control" name="password">
             <br>
-            Confirm Password: <input type="password" name="password_confirmation">
+            Confirm Password: <input type="password" class="form-control" name="password_confirmation">
             <br>
-            <input type="submit" value="Sign Up">
+            <input type="submit" class="btn btn-default" value="Sign Up">
         </form>
         <br>
         Already a member? <a href="/login">Login!</a>

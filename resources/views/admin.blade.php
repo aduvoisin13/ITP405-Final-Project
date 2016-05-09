@@ -10,13 +10,13 @@
         @if (session('failedAttempt'))
             <p>Invalid credentials.</p>
         @endif
-        <form method="post">
+        <form method="post" class="form-inline">
             {{csrf_field()}}
-            Admin Username: <input type="text" name="username">
+            Admin Username: <input type="text" class="form-control" name="username">
             <br>
-            Admin Password: <input type="password" name="password">
+            Admin Password: <input type="password" class="form-control" name="password">
             <br>
-            <input type="submit" value="Log In">
+            <input type="submit" class="btn btn-default" value="Log In">
         </form>
     </div>
 @endsection

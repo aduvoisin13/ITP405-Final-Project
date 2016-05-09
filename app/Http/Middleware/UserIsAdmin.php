@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+use Auth;
+
 class UserIsAdmin
 {
     /**
@@ -24,6 +26,6 @@ class UserIsAdmin
             }
         }
         
-        return redirect('login');
+        return redirect('admin');
     }
 }
