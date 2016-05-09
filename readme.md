@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/aduvoisin13/ITP405-Final-Project.svg?branch=master)](https://travis-ci.org/aduvoisin13/ITP405-Final-Project)
 
+Video Explanation: [Located Here](https://youtu.be/bt_0KNLmEMQ)
+
 Name: Andre Duvoisin
 
 USC Email: duvoisin@usc.edu
