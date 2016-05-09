@@ -22,4 +22,16 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+    
+    public function login()
+    {
+        $email = "test@yungbuck.herokuapp.com";
+        $password = "asdfjkl;";
+        
+        $this
+            ->visit('/login')
+            ->type($email, 'email')
+            ->type($password, 'password')
+            ->press('Log In');
+    }
 }

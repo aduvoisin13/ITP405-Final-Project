@@ -47,11 +47,11 @@ class CharacterController extends Controller
         $character = Character::firstOrCreate([
             'user_id' => Auth::user()->id,
             'name' => $request->input('name'),
-            'realm' => $request->input('realm')
+            'realm' => $request->input('realm'),
+            'class' => $request->input('class'),
+            'specialization' => $request->input('specialization')
         ]);
-        $character->class = $request->input('class');
-        $character->specialization = $request->input('specialization');
-        
+                
         return redirect('saved');
     }
     

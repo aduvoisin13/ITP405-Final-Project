@@ -28,6 +28,12 @@ class CreateUsersTable extends Migration
         $user->password = Hash::make('laravel');
         $user->type = 'admin';
         $user->save();
+        
+        $user = new User();
+        $user->email = 'test@yungbuck.herokuapp.com';
+        $user->password = Hash::make('asdfjkl;');
+        $user->type = 'member';
+        $user->save();
     }
 
     /**
