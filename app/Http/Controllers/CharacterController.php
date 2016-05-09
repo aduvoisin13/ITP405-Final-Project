@@ -105,68 +105,134 @@ class CharacterController extends Controller
         
         $comparison = new \stdClass();
         $names = array();
+        $charactersWithItem = array();
         
         foreach ($profiles as $profile)
         {
-            $comparison->head[] = $profile->items->head->id;
-            $names[$profile->items->head->id] = $profile->items->head->name;
+            if (!empty($profile->items->head))
+            {
+                $comparison->head[] = $profile->items->head->id;
+                $names[$profile->items->head->id] = $profile->items->head->name;
+                $charactersWithItem[$profile->items->head->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->neck[] = $profile->items->neck->id;
-            $names[$profile->items->neck->id] = $profile->items->neck->name;
+            if (!empty($profile->items->neck))
+            {
+                $comparison->neck[] = $profile->items->neck->id;
+                $names[$profile->items->neck->id] = $profile->items->neck->name;
+                $charactersWithItem[$profile->items->neck->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->shoulder[] = $profile->items->shoulder->id;
-            $names[$profile->items->shoulder->id] = $profile->items->shoulder->name;
+            if (!empty($profile->items->shoulder))
+            {
+                $comparison->shoulder[] = $profile->items->shoulder->id;
+                $names[$profile->items->shoulder->id] = $profile->items->shoulder->name;
+                $charactersWithItem[$profile->items->shoulder->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->back[] = $profile->items->back->id;
-            $names[$profile->items->back->id] = $profile->items->back->name;
+            if (!empty($profile->items->back))
+            {
+                $comparison->back[] = $profile->items->back->id;
+                $names[$profile->items->back->id] = $profile->items->back->name;
+                $charactersWithItem[$profile->items->back->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->chest[] = $profile->items->chest->id;
-            $names[$profile->items->chest->id] = $profile->items->chest->name;
+            if (!empty($profile->items->chest))
+            {
+                $comparison->chest[] = $profile->items->chest->id;
+                $names[$profile->items->chest->id] = $profile->items->chest->name;
+                $charactersWithItem[$profile->items->chest->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            if (!empty($profile->shirt))
+            if (!empty($profile->items->shirt))
             {
                 $comparison->shirt[] = $profile->items->shirt->id;
                 $names[$profile->items->shirt->id] = $profile->items->shirt->name;
+                $charactersWithItem[$profile->items->shirt->id][] = $profile->name . '-' . $profile->realm;
             }
             
-            if (!empty($profile->tabard))
+            if (!empty($profile->items->tabard))
             {
                 $comparison->tabard[] = $profile->items->tabard->id;
                 $names[$profile->items->tabard->id] = $profile->items->tabard->name;
+                $charactersWithItem[$profile->items->tabard->id][] = $profile->name . '-' . $profile->realm;
             }
             
-            $comparison->wrist[] = $profile->items->wrist->id;
-            $names[$profile->items->wrist->id] = $profile->items->wrist->name;
+            if (!empty($profile->items->wrist))
+            {
+                $comparison->wrist[] = $profile->items->wrist->id;
+                $names[$profile->items->wrist->id] = $profile->items->wrist->name;
+                $charactersWithItem[$profile->items->wrist->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->hands[] = $profile->items->hands->id;
-            $names[$profile->items->hands->id] = $profile->items->hands->name;
+            if (!empty($profile->items->hands))
+            {
+                $comparison->hands[] = $profile->items->hands->id;
+                $names[$profile->items->hands->id] = $profile->items->hands->name;
+                $charactersWithItem[$profile->items->hands->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->waist[] = $profile->items->waist->id;
-            $names[$profile->items->waist->id] = $profile->items->waist->name;
+            if (!empty($profile->items->waist))
+            {
+                $comparison->waist[] = $profile->items->waist->id;
+                $names[$profile->items->waist->id] = $profile->items->waist->name;
+                $charactersWithItem[$profile->items->waist->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->legs[] = $profile->items->legs->id;
-            $names[$profile->items->legs->id] = $profile->items->legs->name;
+            if (!empty($profile->items->legs))
+            {
+                $comparison->legs[] = $profile->items->legs->id;
+                $names[$profile->items->legs->id] = $profile->items->legs->name;
+                $charactersWithItem[$profile->items->legs->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->feet[] = $profile->items->feet->id;
-            $names[$profile->items->feet->id] = $profile->items->feet->name;
+            if (!empty($profile->items->feet))
+            {
+                $comparison->feet[] = $profile->items->feet->id;
+                $names[$profile->items->feet->id] = $profile->items->feet->name;
+                $charactersWithItem[$profile->items->feet->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->finger[] = $profile->items->finger1->id;
-            $names[$profile->items->finger1->id] = $profile->items->finger1->name;
-            $comparison->finger[] = $profile->items->finger2->id;
-            $names[$profile->items->finger2->id] = $profile->items->finger2->name;
+            if (!empty($profile->items->finger1))
+            {
+                $comparison->finger[] = $profile->items->finger1->id;
+                $names[$profile->items->finger1->id] = $profile->items->finger1->name;
+                $charactersWithItem[$profile->items->finger1->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->trinket[] = $profile->items->trinket1->id;
-            $names[$profile->items->trinket1->id] = $profile->items->trinket1->name;
-            $comparison->trinket[] = $profile->items->trinket2->id;
-            $names[$profile->items->trinket2->id] = $profile->items->trinket2->name;
+            if (!empty($profile->items->finger2))
+            {
+                $comparison->finger[] = $profile->items->finger2->id;
+                $names[$profile->items->finger2->id] = $profile->items->finger2->name;
+                $charactersWithItem[$profile->items->finger2->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            $comparison->mainHand[] = $profile->items->mainHand->id;
-            $names[$profile->items->mainHand->id] = $profile->items->mainHand->name;
+            if (!empty($profile->items->trinket1))
+            {
+                $comparison->trinket[] = $profile->items->trinket1->id;
+                $names[$profile->items->trinket1->id] = $profile->items->trinket1->name;
+                $charactersWithItem[$profile->items->trinket1->id][] = $profile->name . '-' . $profile->realm;
+            }
             
-            if (!empty($profile->offHand))
+            if (!empty($profile->items->trinket2))
+            {
+                $comparison->trinket[] = $profile->items->trinket2->id;
+                $names[$profile->items->trinket2->id] = $profile->items->trinket2->name;
+                $charactersWithItem[$profile->items->trinket2->id][] = $profile->name . '-' . $profile->realm;
+            }
+            
+            if (!empty($profile->items->mainHand))
+            {
+                $comparison->mainHand[] = $profile->items->mainHand->id;
+                $names[$profile->items->mainHand->id] = $profile->items->mainHand->name;
+                $charactersWithItem[$profile->items->mainHand->id][] = $profile->name . '-' . $profile->realm;
+            }
+            
+            if (!empty($profile->items->offHand))
             {
                 $comparison->offHand[] = $profile->items->offHand->id;
                 $names[$profile->items->offHand->id] = $profile->items->offHand->name;
+                $charactersWithItem[$profile->items->offHand->id][] = $profile->name . '-' . $profile->realm;
             }
         }
         
@@ -174,7 +240,8 @@ class CharacterController extends Controller
         return view('result', [
             'comparison' => $comparison,
             'names' => $names,
-            'characters' => $characters
+            'characters' => $characters,
+            'charactersWithItem' => $charactersWithItem
         ]);
     }
     
