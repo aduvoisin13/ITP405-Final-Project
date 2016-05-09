@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/aduvoisin13/ITP405-Final-Project.svg?branch=master)](https://travis-ci.org/aduvoisin13/ITP405-Final-Project)
 
-Video Explanation: [Located Here](https://youtu.be/bt_0KNLmEMQ)
+Video Explanation: [https://youtu.be/bt_0KNLmEMQ](https://youtu.be/bt_0KNLmEMQ)
+
+Website: [https://yungbuck.herokuapp.com/login](https://yungbuck.herokuapp.com/login)
 
 Name: Andre Duvoisin
 
