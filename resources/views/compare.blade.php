@@ -7,7 +7,7 @@
 @section('content')
     <div align="center">
         @if ($characters->isEmpty())
-            <h3 style="font-weight:bold">No Saved Characters</h3>
+            <h3 style="font-weight:bold">No Saved Characters For Comparison</h3>
         @else
             <h3 style="text-decoration:underline">Compare</h3>
             @foreach ($errors->all() as $error)

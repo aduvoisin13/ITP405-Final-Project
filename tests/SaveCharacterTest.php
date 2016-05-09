@@ -35,4 +35,21 @@ class CharacterTest extends TestCase
             ->where('specialization', '=', $specialization)
             ->delete();
     }
+    
+    public function testViewSavedCharactersAfterSpecificCharacterSave()
+    {
+        $this->login();
+        
+        $name = 'Veilgrin';
+        $realm = 'Tichondrius';
+        
+        $this
+            ->visit("/wow/character/$realm/$name")
+            ->press('Save Character')
+            ->seePageIs('/saved');
+        
+        \App\Models\Character::where('name', '=', $name)
+            ->where('realm', '=', $realm)
+            ->delete();
+    }
 }
