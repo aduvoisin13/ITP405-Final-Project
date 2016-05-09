@@ -11,7 +11,7 @@
         @else
             <h3 style="text-decoration:underline">Saved Comparisons</h3>
             @foreach ($comparisons as $comparison)
-                <h4 style="text-decoration:underline">Comparison ID: {{$comparison->id}}</h4>
+                <h3>Comparison ID: {{$comparison->id}}</h3>
                 <table class="table table-striped table-hover" style="width:80%" align="center">
                     <tr>
                         <th class="text-center">Name</th>
@@ -32,18 +32,20 @@
                         </tr>
                     @endforeach
                 </table>
-                <form action="/compare" method="post">
-                    {{csrf_field()}}
-                        @foreach ($comparison->characters as $character)
-                            <input type="hidden" name="character_ids[]" id="{{$character->id}}" value="{{$character->id}}">
-                        @endforeach
-                    <button type="submit" class="btn btn-default">View Comparison</button>
-                </form>
-                <form action="/compare/delete" method="post">
-                    {{csrf_field()}}
-                    <input type="hidden" name="comparison_id" value="{{$comparison->id}}">
-                    <button type="submit" class="btn btn-default">Delete Comparison</button>
-                </form>
+                <div class="row">
+                    <form action="/compare" method="post" class="col-xs-6">
+                        {{csrf_field()}}
+                            @foreach ($comparison->characters as $character)
+                                <input type="hidden" name="character_ids[]" id="{{$character->id}}" value="{{$character->id}}">
+                            @endforeach
+                        <button type="submit" class="btn btn-default">View Comparison</button>
+                    </form>
+                    <form action="/compare/delete" method="post" class="col-xs-6">
+                        {{csrf_field()}}
+                        <input type="hidden" name="comparison_id" value="{{$comparison->id}}">
+                        <button type="submit" class="btn btn-default">Delete Comparison</button>
+                    </form>
+                </div>
                 <br>
             @endforeach
         @endif

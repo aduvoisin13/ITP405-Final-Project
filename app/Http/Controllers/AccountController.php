@@ -37,6 +37,7 @@ class AccountController extends Controller
         }
 
         return redirect('login')
+            ->withInput()
             ->with('failedAttempt', true);
     }
     
@@ -80,6 +81,7 @@ class AccountController extends Controller
         }
 
         return redirect('admin')
+            ->withInput()
             ->with('failedAttempt', true);
     }
 }

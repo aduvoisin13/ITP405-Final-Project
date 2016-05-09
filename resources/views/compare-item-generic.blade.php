@@ -1,4 +1,4 @@
-<h4 style="text-decoration:underline">{{$slot}}</h4>
+<h4>{{$slot}}</h4>
 <table class="table table-striped table-hover" style="width:80%" align="center">
     <tr>
         <th class="text-center">Item</th>
@@ -14,3 +14,4 @@
         @include('compare-item')
     @endif
 </table>
+<br>

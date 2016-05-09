@@ -5,12 +5,11 @@
 @endsection
 
 @section('content')
-    @foreach ($errors->all() as $error)
-        <p>{{$error}}</p>
-    @endforeach
-    
     <div align="center">
         <br>
+        @foreach ($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
         <form method="post" class="form-inline">
             {{csrf_field()}}
             Email: <input type="email" class="form-control" name="email" value="{{old('email')}}">

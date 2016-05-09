@@ -88,7 +88,9 @@ class CharacterController extends Controller
         
         if ($validation->fails())
         {
-            return redirect('compare');
+            return redirect('compare')
+                ->withInput()
+                ->withErrors($validation->errors());
         }
         
         $characters = Character::find($request->input('character_ids'));
@@ -232,6 +234,6 @@ class CharacterController extends Controller
             'user_id' => Auth::user()->id
         ]);
         
-        return redirect($_SERVER['HTTP_REFERER']);
+        return redirect('saved-compare');
     }
 }

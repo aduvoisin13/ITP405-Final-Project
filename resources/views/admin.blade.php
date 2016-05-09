@@ -12,7 +12,7 @@
         @endif
         <form method="post" class="form-inline">
             {{csrf_field()}}
-            Admin Username: <input type="text" class="form-control" name="username">
+            Admin Username: <input type="text" class="form-control" name="username" value="{{old('username')}}">
             <br>
             Admin Password: <input type="password" class="form-control" name="password">
             <br>
