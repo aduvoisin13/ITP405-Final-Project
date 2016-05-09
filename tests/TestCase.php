@@ -34,4 +34,16 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             ->type($password, 'password')
             ->press('Log In');
     }
+    
+    public function adminLogin()
+    {
+        $username = "admin";
+        $password = "laravel";
+        
+        $this
+            ->visit('/admin')
+            ->type($username, 'username')
+            ->type($password, 'password')
+            ->press('Log In');
+    }
 }
