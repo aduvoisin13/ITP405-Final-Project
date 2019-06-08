@@ -1,37 +1,33 @@
-# ITP-405 Final Project
+# yungbuck-web
 
-[![Build Status](https://travis-ci.org/aduvoisin13/ITP405-Final-Project.svg?branch=master)](https://travis-ci.org/aduvoisin13/ITP405-Final-Project)
+[![Build Status](https://travis-ci.org/andreduvoisin/yungbuck-web.svg?branch=master)](https://travis-ci.org/andreduvoisin/yungbuck-web)
 
-Video Explanation: [https://youtu.be/bt_0KNLmEMQ](https://youtu.be/bt_0KNLmEMQ)
+This is the final project for ITP-405 at the University of Southern California (USC). Because of backwards-incompatible changes made to the Battle.net API, the website itself is no longer fully functional. However, the video explanation below was created when it worked properly and gives a full overview of all of the features that the website used to have.
 
 Website: [https://yungbuck.herokuapp.com/login](https://yungbuck.herokuapp.com/login)
 
-Name: Andre Duvoisin
-
-USC Email: duvoisin@usc.edu
-
-This is the final project for ITP-405. All of the design specifications below are a work-in-progress; I'm still trying to figure out exactly what I want the website to do, and how users will find the site useful.
+Video Explanation: [https://youtu.be/bt_0KNLmEMQ](https://youtu.be/bt_0KNLmEMQ)
 
 ## What is your site about?
 
 The website interacts with the [Battle.net API](https://dev.battle.net/) in order to provide players information for Player versus Player (PvP) combat in [World of Warcraft (WoW)](http://us.battle.net/wow/en/). Here is a list of expected features:
 
-* Leaderboards for 2v2, 3v3, 5v5, and RBG (Rated Battlegrounds)
-* Character profiles for the above
-* Saving character profiles to re-visit later
-* Comparison of different characters in order to view differences/similarities in specilization, talents, race, and gear
-* Saving these comparisons to re-visit later
+- Leaderboards for 2v2, 3v3, 5v5, and RBG (Rated Battlegrounds)
+- Character profiles for the above
+- Saving character profiles to re-visit later
+- Comparison of different characters in order to view differences/similarities in specilization, talents, race, and gear
+- Saving these comparisons to re-visit later
 
 Time permitting, I would like to expand this to Player versus Environment (PvE). Here's a sample of what could be done:
 
-* Challenge mode leaderboards
-* Character profiles for the above
-* Saving character profiles to re-visit later
-* Comparison of different characters in order to view differences/similarities in specilization, talents, race, and gear
-* Team profiles for the above
-* Saving team profiles to re-visit later
-* Comparison of different teams in order to view differences/similarities in team builds
-* Saving these comparisons to re-visit later
+- Challenge mode leaderboards
+- Character profiles for the above
+- Saving character profiles to re-visit later
+- Comparison of different characters in order to view differences/similarities in specilization, talents, race, and gear
+- Team profiles for the above
+- Saving team profiles to re-visit later
+- Comparison of different teams in order to view differences/similarities in team builds
+- Saving these comparisons to re-visit later
 
 This could even be expanded to being able to simply view and save different information, such as quests, achievements, and mounts, possibly with a link to the [Wowhead](http://www.wowhead.com/) page for each of these.
 
@@ -52,10 +48,6 @@ Blizzard Entertainment's [Battle.net API](https://dev.battle.net/)
 ## What do you think your tables will be?
 
 I don't have exact specifications yet, but I know that I will need to use tables in order to save character profiles, team profiles, and comparisons for later viewing based on user account.
-
-
-
-
 
 # Laravel PHP Framework
 
